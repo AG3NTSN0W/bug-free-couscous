@@ -1,3 +1,63 @@
-table {
+.debtReport {
   width: 100%;
+
+
+  &-table {
+    margin: 30px;
+  }
+
+  &-header {
+    background-color: #6494ed;
+    height: 60px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    &-select{
+      margin: 30px;
+      width: 200px;
+      height: 60px;
+
+      border: none;
+      outline: none;
+
+      background-color: transparent;
+      color: white;
+
+      &-option {
+        background-color: #6494ed;
+        color: white;
+        width: 200px;
+        height: 10px;
+      }
+    }
+    
+  }
+
+  table {
+    width: 100%;
+  }
+
+  .table-delete {
+    color: hsl(219, 79%, 66%);
+    cursor: pointer;
+  }
+
+  .search {
+    padding: 0px 0px 20px 0px;
+
+    &-label {
+      padding-right: 20px;
+    }
+
+    &-input{
+      height: 17px;
+      background-color: whitesmoke;
+      border: none;
+      outline: none;
+      padding: 5px;
+      border-radius: 5px;
+    }
+  }
 }
