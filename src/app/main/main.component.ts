@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
@@ -11,6 +12,10 @@ import { ReportService } from '../service/report/report.service';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
+
+  @ViewChild('myDialog', { static: true })
+  myDialog!: TemplateRef<any>;
+  
   mySubscriptions: Subscription[] = [];
   debtReport: DebtReport[] = [];
   companies: DebtCompanies[] = [];
@@ -30,34 +35,35 @@ export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
   ];
   dataSource = new MatTableDataSource<DebtReport>();
 
-  constructor(private reportService: ReportService) {}
+  companiesSub: Subscription = new Subscription;
+  debtReportSub: Subscription = new Subscription;
+
+  constructor(private reportService: ReportService, private dialog: MatDialog) {}
 
   ngOnDestroy(): void {
-    for (const subs of this.mySubscriptions) {
-      subs.unsubscribe();
-    }
+    this.companiesSub.unsubscribe();
+    this.debtReportSub.unsubscribe();
   }
 
   ngOnInit(): void {}
 
   ngAfterViewInit() {
-    const companiesSub = this.reportService
-      .getDebtCompanies()
-      .subscribe((company: DebtCompanies[]) => {
-        this.companies = company;
-        this.selected = company[0].companyId;
-      });
 
-      // I cant use 1 as default because there might no be there. i
-    const debtReportSub = this.reportService
-      .getDebtReport(1, new Date())
+    this.companiesSub = this.reportService
+    .getDebtCompanies()
+    .subscribe((company: DebtCompanies[]) => {
+      this.companies = company;
+      this.selected = company[0].companyId;
+
+      // Well... Cant stop me now :)
+      this.debtReportSub = this.reportService
+      .getDebtReport(this.selected, new Date())
       .subscribe((debtReport: DebtReport[]) => {
         this.debtReport = debtReport;
         this.dataSource.data = debtReport;
       });
 
-    this.mySubscriptions.push(companiesSub);
-    this.mySubscriptions.push(debtReportSub);
+    });
 
     this.dataSource = new MatTableDataSource();
   }
@@ -70,7 +76,20 @@ export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
   deleteItem(index: number) {
     this.debtReport?.splice(index, 1);
     this.dataSource.data = this.debtReport;
+    this.dialog.closeAll()
   }
 
-  companyChange() {  }
+  companyChange() {  
+    this.debtReportSub.unsubscribe();
+    this.debtReportSub = this.reportService
+    .getDebtReport(this.selected, new Date())
+    .subscribe((debtReport: DebtReport[]) => {
+      this.debtReport = debtReport;
+      this.dataSource.data = debtReport;
+    });
+  }
+
+  openDialog(index: number) {
+    this.dialog.open(this.myDialog, {data: {index: index}});
+  }
 }

@@ -14,7 +14,7 @@
     flex-direction: column;
     justify-content: center;
 
-    &-select{
+    &-select {
       margin: 30px;
       width: 200px;
       height: 60px;
@@ -32,7 +32,7 @@
         height: 10px;
       }
     }
-    
+
   }
 
   table {
@@ -42,6 +42,10 @@
   .table-delete {
     color: hsl(219, 79%, 66%);
     cursor: pointer;
+
+    &:hover {
+      color: red;
+    }
   }
 
   .search {
@@ -51,7 +55,7 @@
       padding-right: 20px;
     }
 
-    &-input{
+    &-input {
       height: 17px;
       background-color: whitesmoke;
       border: none;
@@ -60,4 +64,69 @@
       border-radius: 5px;
     }
   }
+}
+
+.myDialog {
+  width: 45vw;
+  height: 35vh;
+
+  &-header {
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 30px;
+    border-bottom: 1px solid;
+  }
+
+  &-text {
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 30px;
+    color: hsl(219, 79%, 66%);
+  }
+
+  &-buttons {
+    height: 15%;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 45px;
+
+    &-button {
+      margin: 5px;
+      border-radius: 5px;
+      outline: none;
+      border: 1px solid;
+      cursor: pointer;
+
+      &:hover {
+        background-color: hsl(219, 79%, 66%);
+        border-color: hsl(219, 79%, 66%);
+      }
+
+      &:focus {
+        outline-style: dotted;
+        outline-color:hsl(219, 79%, 66%);
+        outline-width: 2px;
+      }
+    }
+
+    &-cancel {
+      background-color: transparent;
+      outline: none;
+    }
+
+    &-delete {
+      background-color: red;
+      border-color: red;
+      color: white;
+    }
+  }
+}
+
+
+::ng-deep .mat-dialog-container#mat-dialog-0 {
+  padding: 0px;
 }
