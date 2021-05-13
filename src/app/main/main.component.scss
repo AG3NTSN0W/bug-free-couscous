@@ -1,13 +1,17 @@
+$BFC-blue: hsl(219, 79%, 55%);
+$BFC-white: hsl(0, 0%, 100%);
+$BFC-ligtWhite:  hsl(0, 0%, 96%);;
+$BFC-red: hsl(0, 100%, 50%);;
+
 .debtReport {
   width: 100%;
-
 
   &-table {
     margin: 30px;
   }
 
   &-header {
-    background-color: #6494ed;
+    background-color: $BFC-blue;
     height: 60px;
     width: 100%;
     display: flex;
@@ -23,11 +27,11 @@
       outline: none;
 
       background-color: transparent;
-      color: white;
+      color: $BFC-white;
 
       &-option {
-        background-color: #6494ed;
-        color: white;
+        background-color: $BFC-blue;
+        color: $BFC-white;
         width: 200px;
         height: 10px;
       }
@@ -40,13 +44,14 @@
   }
 
   .table-delete {
-    color: hsl(219, 79%, 66%);
+    color: $BFC-blue;
     cursor: pointer;
 
     &:hover {
-      color: red;
+      color: $BFC-red;
     }
   }
+
   .table-number {
     // It did not look correct
     // text-align: right;
@@ -61,7 +66,7 @@
 
     &-input {
       height: 17px;
-      background-color: whitesmoke;
+      background-color: $BFC-ligtWhite;
       border: none;
       outline: none;
       padding: 5px;
@@ -72,7 +77,8 @@
 
 .myDialog {
   width: 45vw;
-  height: 35vh;
+  height: 20vh;
+  padding: 0px;
 
   &-header {
     height: 20%;
@@ -89,7 +95,7 @@
     flex-direction: column;
     justify-content: center;
     padding-left: 30px;
-    color: hsl(219, 79%, 66%);
+    color: $BFC-blue;
   }
 
   &-buttons {
@@ -106,13 +112,13 @@
       cursor: pointer;
 
       &:hover {
-        background-color: hsl(219, 79%, 66%);
-        border-color: hsl(219, 79%, 66%);
+        background-color: $BFC-blue;
+        border-color: $BFC-blue;
       }
 
       &:focus {
         outline-style: dotted;
-        outline-color:hsl(219, 79%, 66%);
+        outline-color: $BFC-blue;
         outline-width: 2px;
       }
     }
@@ -123,14 +129,13 @@
     }
 
     &-delete {
-      background-color: red;
-      border-color: red;
-      color: white;
+      background-color: $BFC-red;
+      border-color: $BFC-red;
+      color: $BFC-white;
     }
   }
 }
 
-
-::ng-deep .mat-dialog-container#mat-dialog-0 {
+::ng-deep .mat-dialog-container[id*='mat-dialog-'] {
   padding: 0px;
 }
