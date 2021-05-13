@@ -43,37 +43,37 @@
 
       <ng-container matColumnDef="days60">
         <th mat-header-cell *matHeaderCellDef> 60 Days </th>
-        <td mat-cell *matCellDef="let element"> {{element.days60 | currency:'R '}} </td>
+        <td mat-cell class="table-number" *matCellDef="let element"> {{element.days60 | currency:'R '}} </td>
       </ng-container>
 
       <ng-container matColumnDef="days30">
         <th mat-header-cell *matHeaderCellDef> 30 Days </th>
-        <td mat-cell *matCellDef="let element"> {{element.days30 | currency:'R '}} </td>
+        <td mat-cell class="table-number" *matCellDef="let element"> {{element.days30 | currency:'R '}} </td>
       </ng-container>
 
       <ng-container matColumnDef="current">
         <th mat-header-cell *matHeaderCellDef> Current </th>
-        <td mat-cell *matCellDef="let element"> {{element.current | currency:'R '}} </td>
+        <td mat-cell class="table-number" *matCellDef="let element"> {{element.current | currency:'R '}} </td>
       </ng-container>
 
       <ng-container matColumnDef="totalPaid">
         <th mat-header-cell *matHeaderCellDef> Total Paid </th>
-        <td mat-cell *matCellDef="let element"> {{element.totalDue | currency:'R '}} </td>
+        <td mat-cell class="table-number" *matCellDef="let element"> {{element.totalDue | currency:'R '}} </td>
       </ng-container>
 
       <ng-container matColumnDef="totalDue">
         <th mat-header-cell *matHeaderCellDef> Total Due </th>
-        <td mat-cell *matCellDef="let element"> {{element.totalDue | currency:'R '}} </td>
+        <td mat-cell class="table-number" *matCellDef="let element"> {{element.totalDue | currency:'R '}} </td>
       </ng-container>
 
       <ng-container matColumnDef="escalationDate">
         <th mat-header-cell *matHeaderCellDef> Escalation Date </th>
-        <td mat-cell *matCellDef="let element"> {{element.escalationDate | date:'dd/MM/yyyy'}} </td>
+        <td mat-cell  *matCellDef="let element"> {{element.escalationDate | date:'dd/MM/yyyy'}} </td>
       </ng-container>
 
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef> Action </th>
-        <td mat-cell *matCellDef="let element; index as i" class="table-delete" (click)="openDialog(i)"> delete
+        <td mat-cell class="table-delete" *matCellDef="let element; index as i" (click)="openDialog(i)"> delete
         </td>
       </ng-container>
 
